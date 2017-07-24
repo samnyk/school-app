@@ -1,0 +1,193 @@
+
+<div class="container">
+<div class="row">
+    <div class="col-md-12 school top-100 ">
+
+        <ul class="col-md-3">
+            <h4>Students
+                <button class="round-button" ng-click="addS()">
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                </button>
+
+            </h4>
+            <h5 class="centered" ng-if="!students.length"><b>No students yet</b></h5>
+            <li  class="border-bottom" ng-repeat="student in students track by $index">
+                    <a href=""  ng-click="showStudent(student.id)">
+                        <div class="row">
+
+                            <div class="">
+                                {{student.name}}
+                            </div>
+                        </div>
+
+                    </a>
+                </li>
+
+        </ul>
+
+        <ul class="col-md-3">
+            <h4>Courses
+                <button class="round-button " ng-click="addC()">
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                </button>
+            </h4>
+            <h5 class="centered" ng-if="!courses.length"><b>No courses yet</b></h5>
+
+            <li  class="border-bottom"
+                    ng-repeat="course in courses track by $index">
+                    <a href=""  ng-click="showCourse(course.id)">
+                        <div class="row">
+
+                            <div class="">
+                                {{course.name}}
+
+                            </div>
+                        </div>
+
+                    </a>
+                </li>
+        </ul>
+
+        <div class="col-md-6 detail-area">
+            <h1 ng-if="mainContainer" class="main-container">Main Container</h1>
+            <div class="details">
+
+            </div>
+            <div ng-if="viewStudent" class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <button class="btn btn-danger pull-right " ng-if="viewStudent && loggedUser.role !='sales'" type="submit" ng-click="deleteDialog()">Delete</button>
+
+                    <img ng-src="{{thisStudent.image}}" alt="" class="col-md-6 student-img">
+
+                    <div class="col-md-6">
+                        {{thisStudent.name}}<br/>
+                        {{thisStudent.phone}}<br/>
+                        {{thisStudent.email}}
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row pull-left padding-20">
+                        <ul>
+                            <h4>COURSES:</h4>
+                            <li ng-repeat="course in thisStudent['courses'] track by $index">{{course}}</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <button class="btn btn-default pull-right margin-bottom-20" ng-if="loggedUser.role !='sales'"  ng-click="editStudent()">Edit</button>
+                </div>
+            </div>
+            <div ng-if="viewCourse" class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <button class="btn btn-danger pull-right btn-width " ng-if="viewCourse && loggedUser.role !='sales'" type="submit" ng-click="deleteDialog()">Delete</button>
+
+
+                    <img ng-src="{{thisCourse.image}}" alt="" class="col-md-6 student-img">
+
+                    <div class="col-md-6">
+                        <h2>{{thisCourse.name}}</h2>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="row ">
+                        <h4 class="desc">Description:</h4><br>
+                        <p class="text-align-left">{{thisCourse.description}}</p>
+                    </div>
+                    <div class="row pull-left padding-20">
+                        <h3>This course has {{thisCourse.howmany}} students</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn btn-default pull-right margin-bottom-20 btn-width" ng-if="loggedUser.role !='sales'"  ng-click="editCourse()">Edit</button>
+                </div>
+            </div>
+            <form class="form-signin" ng-if="addStdnt" name="form.personForm" enctype="multipart/form-data">
+                <h2 ng-if="!editingStudent" class="form-signin-heading">Add new Student</h2>
+                <h2 ng-if="editingStudent" class="form-signin-heading">Edit {{thisStudent.name}}</h2>
+
+                <input type="text" class="form-control margin-bottom-20 " ng-model="user.name" placeholder="Name"  autofocus="" required="">
+                <input type="tel" pattern="[0-9]{10}" class="form-control margin-bottom-20 " ng-model="user.phone" placeholder="Phone"  required="">
+                <input type="email" class="form-control margin-bottom-20 " ng-model="user.email" placeholder="Email" required="">
+                <div class="margin-bottom-20  ">
+                    <span class="title row">Profile Image :</span>
+                    <div class="row">
+                        <input id="file-input"  type="file" class="col-md-6" ngf-select="" ng-model="picFile" name="file" ngf-accept="'image/*'" required="">
+                        <img class="img-priview col-md-6" ng-model="preview" ngf-thumbnail="picFile ">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <ul class="course-choises">
+                    <h4>Courses:</h4>
+                    <li  ng-repeat="course in courses track by $index" >
+                        {{course.name }} <input type="checkbox"  ng-model="user.selected[course.id]" value="{{course.id}}">
+                    </li>
+                </ul>
+
+                <div class="row ">
+                    <button  ng-if="editingStudent" ng-disabled="form.personForm.$invalid" class="btn btn-default pull-left btn-width" type="submit" ng-click="editIt(picFile)">Edit</button>
+                    <button ng-if="!editingStudent" ng-disabled="form.personForm.$invalid" class="btn btn-default pull-left btn-width" type="submit" ng-click="addStudent(picFile)">Add</button>
+                </div>
+                <div class="row" ng-if="errorMsg">
+                    <p class="error">Email already exists please try another one</p>
+                </div>
+
+            </form>
+            <form class="form-signin" ng-if="addCourse" name="form.personForm" enctype="multipart/form-data">
+                <h2 ng-if="editCrse" class="form-signin-heading">Edit {{thisCourse.name}}</h2>
+                <h2 ng-if="!editCrse" class="form-signin-heading">Add new Course</h2>
+
+                <input type="text" class="form-control margin-bottom-20 " ng-model="user.name" placeholder="Name"  autofocus="" required="">
+                <div class="row">
+                    <h4>Description</h4>
+                    <textarea   ng-model="user.desc" rows="10"></textarea>
+                </div>
+
+                <div class="margin-bottom-20  ">
+                    <span class="title row">Course Image :</span>
+                    <div class="row">
+                        <input id="file-input"  type="file" class="col-md-6" ngf-select="" ng-model="picFile" name="file" ngf-accept="'image/*'" required="">
+                        <img class="img-priview col-md-6" ng-model="preview" ngf-thumbnail="picFile ">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="row ">
+                    <button  ng-if="editCrse" ng-disabled="form.personForm.$invalid" class="btn btn-default pull-left btn-width" type="submit" ng-click="editItCourse(picFile)">Edit</button>
+
+                    <button ng-if="!editCrse" ng-disabled="form.personForm.$invalid" class="btn btn-default pull-left btn-width" type="submit" ng-click="addCourses(picFile)">Add</button>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="clearfix">
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<div class="deletebox" ng-if="deletebox && viewStudent ">
+    <div class="deletepopup">
+        <h1>Are you sure you want to delete {{thisStudent.name}}?</h1>
+        <button class="btn btn-default btn-width" ng-click="deleteStudent()">YES</button>
+        <button ng-click="dontDelete()" class="btn btn-default btn-width">NO</button>
+
+    </div>
+</div>
+<div class="deletebox" ng-if="deletebox && viewCourse">
+    <div class="deletepopup">
+        <h1>Are you sure you want to delete {{thisCourse.name}}?</h1>
+        <button class="btn btn-default btn-width" ng-click="deleteCourse()">YES</button>
+        <button ng-click="dontDelete()" class="btn btn-default btn-width">NO</button>
+
+    </div>
+</div>

@@ -1,0 +1,108 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 adminsdiv">
+            <h4>Administarots
+                <button class="round-button" ng-click="addAdmin()">
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                </button>
+            </h4>
+            <ul class="col-md-12 ">
+                <li ng-repeat="admin in admins" class="border-bottom"><a href="" ng-click="editDetails(admin.id)">
+                    <div class="row">
+
+                        <img ng-src="{{admin.image}}" alt="" class="col-md-6 admin-img">
+
+                        <div class="col-md-6">
+                            {{admin.name}}, {{admin.role}}<br/>
+                            {{admin.phone}}<br/>
+                            {{admin.email}}
+
+                        </div>
+                    </div>
+
+                </a></li>
+            </ul>
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="col-md-10 admin-content">
+
+
+            <div class="col-md-12 relative">
+                <h1 class=" centered" ng-if="!addOrEdit">
+                    The system has {{admins.length}} Admins
+                </h1>
+                <div ng-if="addOrEdit" class=" col-md-8 col-offset-md-2 form-wrapper">
+                    <button class="btn btn-danger pull-right " ng-if="admins.length>1 && !add" type="submit" ng-click="deleteDialog()">Delete</button>
+
+                    <form class="form-signin" name="form.personForm" enctype="multipart/form-data">
+                        <h2 ng-if="add" class="form-signin-heading">Add new Admin</h2>
+                        <h2 ng-if="edit" class="form-signin-heading">Edit <span ng-if="admins.length>1">/ Delete </span>  {{editData.name}}</h2>
+
+
+                        <input type="text" class="form-control margin-bottom-20 " ng-model="user.name" placeholder="Name"  autofocus="" required="">
+                        <input type="tel" pattern="[0-9]{10}" class="form-control margin-bottom-20 " ng-model="user.phone" placeholder="Phone"  required="">
+                        <input type="email" class="form-control margin-bottom-20 " ng-model="user.email" placeholder="Email" required="">
+                        <input type="password" class="form-control margin-bottom-20 " ng-model="user.password" placeholder="Password" required="">
+                        <div class="margin-bottom-20 ">
+                            <span class="title">
+                                Role
+                            </span>
+                            <select class="form-control" name="role" ng-model="user.role" required="">
+                                <option ng-if="loggedUser.role == 'owner'" value="owner">Owner</option>
+                                <option  value="manager">Manager</option>
+                                <option value="sales">Sales</option>
+                            </select>
+                        </div>
+
+                        <div class="margin-bottom-20  ">
+                            <span class="title row">Profile Image :</span>
+                            <div class="row">
+                                <input id="file-input"  type="file" class="col-md-6" ngf-select="" ng-model="picFile" name="file" ngf-accept="'image/*'" required="">
+                                <img class="img-priview col-md-6" ng-model="preview" ngf-thumbnail="picFile ">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+
+                        <div ng-if="edit" class="row ">
+                            <button   ng-disabled="form.personForm.$invalid" class="btn btn-default pull-left" type="submit" ng-click="editIt(picFile)">Edit</button>
+                        </div>
+                        <div ng-if="add" class="row ">
+                            <button ng-disabled="form.personForm.$invalid" class="btn btn-default pull-left" type="submit" ng-click="addUser(picFile)">Add</button>
+                        </div>
+
+                        <div class="row" ng-if="errorMsg">
+                            <p class="error">Email already exists please try another one</p>
+                        </div>
+
+                    </form>
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="clearfix">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="deletebox" ng-if="deletebox">
+    <div class="deletepopup">
+        <h1>Are you sure you want to delete {{editData.name}}?</h1>
+        <button class="btn btn-default" ng-click="deleteUser()">YES</button>
+        <button ng-click="dontDelete()" class="btn btn-default">NO</button>
+
+    </div>
+</div>

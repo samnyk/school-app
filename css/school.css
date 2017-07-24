@@ -1,0 +1,85 @@
+.detail-area{
+    min-height: 300px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid black;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+.top-100{
+    top:100px;
+}
+
+
+.school ul{
+    text-align: center;
+    list-style: none;
+    /*border-left: 1px solid black;*/
+
+}
+.school li{
+
+    padding:10px 10px 10px 0px;
+    font-weight:bold;
+
+}
+
+form{
+    padding:20px;
+}
+
+
+.course-choises li{
+    display: inline-block;
+}
+
+
+.student-img{
+    width:70px;
+    height:60px;
+}
+
+.details{
+    padding:20px;
+}
+
+.deletebox{
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 80;
+}
+
+.deletepopup{
+    position: fixed;
+    text-align: center;
+    padding:50px;
+    border-radius: 20px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+
+}
+
+
+.desc{
+    text-align: left !important;
+    padding:10px;
+}
+
+.main-container{
+    position: relative;
+    top:100px;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+
+form textarea{
+    width:100%;
+}

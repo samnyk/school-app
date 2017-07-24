@@ -1,0 +1,89 @@
+.adminsdiv ul{
+    list-style: none;
+
+}
+
+.adminsdiv{
+    top:100px;
+    max-height: 700px;
+    min-height: 400px;
+}
+
+.adminsdiv li{
+    padding:10px 10px 10px 0px;
+    font-weight:bold;
+
+}
+
+.admin-content{
+    top:100px;
+    overflow-y: auto;
+    left:50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.6);
+    border: 1px solid black;
+    border-radius: 20px 0px 0px 20px;
+    position: relative;
+    min-height:400px;
+    margin-bottom: 50px;
+}
+
+
+
+
+.centered{
+    position: relative;
+    text-align: center;
+    padding-top:150px;
+
+}
+
+.align-center{
+    text-align: center;
+}
+
+
+.uload-file{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 10px;
+}
+
+.form-wrapper{
+    margin:40px!important;
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+
+
+.admin-img{
+    width:70px;
+    height:60px;
+}
+
+
+
+.deletebox{
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 80;
+}
+
+.deletepopup{
+    position: fixed;
+    text-align: center;
+    padding:50px;
+    border-radius: 20px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+
+}

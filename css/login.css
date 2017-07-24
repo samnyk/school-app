@@ -1,0 +1,35 @@
+.form-wrapper {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 400px;
+    border: 1px solid grey;
+    border-radius: 20px;
+    padding: 40px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.form-signin > input{
+    margin-bottom: 10px;
+}
+
+.form-signin-heading{
+    text-align: center;
+    padding: 10px;
+}
+
+.error{
+    display: block;
+    position: relative;
+    padding-top:10px;
+    color: red;
+}
+
+
+.welcome{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}

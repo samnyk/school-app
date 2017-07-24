@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header pull-left">
+
+            <a class="navbar-brand" href="#/">
+                <i class="fa fa-book" aria-hidden="true"></i>
+
+
+
+                MySchool</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-left">
+
+            <li class="border-left border-right" ><a ng-if="session" class="nav-link" href="#/school">
+                <i class="rotator fa fa-graduation-cap" aria-hidden="true"></i>
+                School
+            </a>
+            </li>
+            <li class="border-right"><a ng-if="session && loggedUser.role == 'owner' || session && loggedUser.role == 'manager'" class="nav-link " href="#/admins">
+                <i class="rotator fa fa-user-secret" aria-hidden="true"></i>
+                Administration
+            </a>
+            </li>
+
+        </ul>
+
+        <ul  ng-if="session" class="nav navbar-nav navbar-right">
+            <li class="line-height  padding-10-left">
+                <strong class="capitalize inline">{{loggedUser.name}}</strong>
+                <p class="capitalize inline">,{{loggedUser.role}}</p>
+                <a  ng-click="logout()" ng-if="session" class="text-align-right padding-0" href="#/admins">Logout</a>
+
+            </li>
+            <img ng-src="{{loggedUser.image}}" alt="" class="usr-img">
+            <li>
+
+            </li>
+        </ul>
+    </div>
+</nav>

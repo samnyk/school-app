@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+
+    <script src="js/angular-css.js"></script>
+
+
+    <script src="app.js"></script>
+    <script src="controllers/sessionService.js"></script>
+    <script src="controllers/userDataService.js"></script>
+    <script src="controllers/adminController.js"></script>
+
+    <script src="controllers/logincontroller.js"></script>
+    <script src="controllers/navdirective.js"></script>
+    <script src="controllers/schoolcontroller.js"></script>
+
+
+</head>
+
+<body ng-app="mySchoolApp">
+
+<navdirective></navdirective>
+
+<div id="main">
+
+    <div ng-view>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
